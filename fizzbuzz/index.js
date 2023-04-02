@@ -11,7 +11,35 @@
 //   4
 //   buzz
 
-function fizzBuzz(n) {}
+/** Version 1 of the solution */
+const fizzBuzz_1 = (n) => {
+  for (let i = 1; i <= n; i++) {
+    if (i % 5 === 0 && i % 3 === 0) {
+      console.log("fizzbuzz");
+    } else if (i % 5 === 0) {
+      console.log("buzz");
+    } else if (i % 3 === 0) {
+      console.log("fizz");
+    } else {
+      console.log(i);
+    }
+  }
+};
+
+/** Version 2 of the solution */
+const fizzBuzz_2 = (n) => {
+  for (let i = 1; i <= n; i++) {
+    let str = "";
+
+    if (i % 3 === 0) str += "fizz";
+
+    if (i % 5 === 0) str += "buzz";
+
+    if (str === "") str = i;
+
+    console.log(str);
+  }
+};
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
@@ -42,11 +70,11 @@ console.log = sinon.spy();
 
 describe("Fizz Buzz", () => {
   it("fizzbuzz(30) should console log 30 times", () => {
-    fizzBuzz(30);
+    fizzBuzz_2(30);
     assert.equal(console.log.callCount, 30);
   });
   it("fizzbuzz(30) console logs correct values", () => {
-    fizzBuzz(30);
+    fizzBuzz_2(30);
     assert.equal(console.log.getCall(0).args[0], 1);
     assert.equal(console.log.getCall(1).args[0], 2);
     assert.equal(console.log.getCall(2).args[0], "fizz");
