@@ -7,7 +7,24 @@
 //   reverseInt(-13) === -31
 //   reverseInt(-100) === -1
 
-function reverseInt(n) {}
+/** Version 1 of the solution */
+const reverseInt_1 = (n) => {
+  if (n.toString().split("").includes("-")) {
+    let arr = n.toString().split("").reverse();
+    if (typeof arr !== Array) arr = [...arr];
+    arr.unshift("-");
+    arr.pop();
+    return Number(arr.join(""));
+  } else {
+    return Number(n.toString().split("").reverse().join(""));
+  }
+};
+
+/** Version 2 of the solution */
+const reverseInt_2 = (n) => {
+  let reverse = parseInt(n.toString().split("").reverse().join(""));
+  return n < 0 ? reverse * -1 : reverse;
+};
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
@@ -37,17 +54,17 @@ const { assert } = chai;
 
 describe("Integer Reversal", () => {
   it("reverseInt() works on positive numbers", () => {
-    assert.equal(reverseInt(3), 3);
-    assert.equal(reverseInt(13), 31);
-    assert.equal(reverseInt(100), 1);
-    assert.equal(reverseInt(1408), 8041);
+    assert.equal(reverseInt_2(3), 3);
+    assert.equal(reverseInt_2(13), 31);
+    assert.equal(reverseInt_2(100), 1);
+    assert.equal(reverseInt_2(1408), 8041);
   });
 
   it("reverseInt() works on negative numbers numbers", () => {
-    assert.equal(reverseInt(-3), -3);
-    assert.equal(reverseInt(-13), -31);
-    assert.equal(reverseInt(-100), -1);
-    assert.equal(reverseInt(-1408), -8041);
+    assert.equal(reverseInt_2(-3), -3);
+    assert.equal(reverseInt_2(-13), -31);
+    assert.equal(reverseInt_2(-100), -1);
+    assert.equal(reverseInt_2(-1408), -8041);
   });
 });
 
