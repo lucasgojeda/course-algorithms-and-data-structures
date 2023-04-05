@@ -7,7 +7,41 @@
 //   vowels('aEiOu') --> 5
 //   vowels('I am a world-class developer using iterations') --> 16
 
-function vowels(str) {}
+/** Solution 1 of this problem */
+/** Time complexity O(n) */
+const vowels_1 = (str) => {
+  str = str.toLowerCase();
+  let res = 0;
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === "a") res += 1;
+    if (str[i] === "e") res += 1;
+    if (str[i] === "i") res += 1;
+    if (str[i] === "o") res += 1;
+    if (str[i] === "u") res += 1;
+  }
+  return res;
+};
+
+/** Solution 2 of this problem */
+/** Time complexity O(n) */
+const vowels_2 = (str) => {
+  str = str.toLowerCase();
+  const vowels = "aeiou".split("");
+  let count = 0;
+
+  for (let i = 0; i < str.length; i++) {
+    const char = str[i];
+
+    for (let j = 0; j < vowels.length; j++) {
+      const vowel = vowels[j];
+      if (char === vowel) {
+        count++;
+      }
+    }
+  }
+
+  return count;
+};
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
@@ -37,12 +71,12 @@ const { assert } = chai;
 
 describe("Vowels", () => {
   it("gets correct vowel count", () => {
-    assert.equal(vowels("What"), 1);
-    assert.equal(vowels("Why"), 0);
+    assert.equal(vowels_2("What"), 1);
+    assert.equal(vowels_2("Why"), 0);
   });
   it("is case insensitive. vowels('aEiOu') should return 5", () => {
-    assert.equal(vowels("aEiOu"), 5);
-    assert.equal(vowels("I am a world-class developer using iterations"), 16);
+    assert.equal(vowels_2("aEiOu"), 5);
+    assert.equal(vowels_2("I am a world-class developer using iterations"), 16);
   });
 });
 
