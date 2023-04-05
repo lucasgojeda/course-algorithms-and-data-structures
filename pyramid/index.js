@@ -13,7 +13,42 @@
 //       ' ### '
 //       '#####'
 
-function pyramid(n) {}
+/** Solution 1 of this problem */
+/** Time complexity O(n^1") */
+const pyramid_1 = (n) => {
+  let char = "#";
+  for (let i = 1; i <= n; i++) {
+    let res = "";
+
+    /** Repeat the character */
+    if (i > 1) char += "##";
+
+    /** Repeat the spaces */
+    const idx = (n + 2 - char.length) / 2;
+    let spaces = "";
+    if (idx >= 1) spaces = " ".repeat(idx);
+
+    /** Create the response */
+    if (spaces.length >= 1) {
+      res = `${spaces}${char}${spaces}`;
+    } else {
+      res = char;
+    }
+    /** Return the value */
+    console.log(res);
+  }
+};
+
+/** Solution 2 of this problem */
+/** Time complexity O(n^2") */
+const pyramid_2 = (n) => {
+  for (let i = 1; i <= n; i++) {
+    const padding = " ".repeat(n - i);
+    const hashes = "#".repeat(i * 2 - 1);
+
+    console.log(padding + hashes + padding);
+  }
+};
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
@@ -44,7 +79,7 @@ console.log = sinon.spy();
 
 describe("Pyramid", () => {
   it("pyramid() works", () => {
-    pyramid(3);
+    pyramid_2(3);
     assert.equal(console.log.callCount, 3);
     assert.equal(console.log.getCall(0).args[0], "  #  ");
     assert.equal(console.log.getCall(1).args[0], " ### ");
