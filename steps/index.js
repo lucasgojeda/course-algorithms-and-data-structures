@@ -16,7 +16,18 @@
 //       '### '
 //       '####'
 
-function steps(n) {}
+/** Time complexity: O(n^2) */
+const steps = (n) => {
+  for (let i = 1; i <= n; i++) {
+    let char = "#";
+    /** Repeat the character */
+    if (i >= 2) char = char.repeat(i);
+    /** Repeat the spaces */
+    char += " ".repeat(n - char.length);
+    /** Return the value */
+    console.log(char);
+  }
+};
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
