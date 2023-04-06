@@ -5,7 +5,34 @@
 // merge([1,5], [4,6,7]) === [1,4,5,6,7]
 // merge([4,6,7], [1,5]) === [1,4,5,6,7]
 
-function merge(sortedArr1, sortedArr2) {}
+/** Time complexity O(n + m) */
+const merge = (sortedArr1, sortedArr2) => {
+  let pointer1 = 0;
+  let pointer2 = 0;
+  let res = [];
+
+  while (pointer1 < sortedArr1.length && pointer2 < sortedArr2.length) {
+    if (sortedArr1[pointer1] < sortedArr2[pointer2]) {
+      res.push(sortedArr1[pointer1]);
+      pointer1++;
+    } else {
+      res.push(sortedArr2[pointer2]);
+      pointer2++;
+    }
+  }
+
+  while (pointer1 < sortedArr1.length) {
+    res.push(sortedArr1[pointer1]);
+    pointer1++;
+  }
+
+  while (pointer2 < sortedArr2.length) {
+    res.push(sortedArr2[pointer2]);
+    pointer2++;
+  }
+
+  return res;
+};
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
